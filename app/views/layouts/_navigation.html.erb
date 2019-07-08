@@ -1,0 +1,24 @@
+<div class="ui red inverted menu">
+  <%= link_to "All Courses", courses_path, class: "item"%>
+  <%= link_to "Add a Course", new_course_path, class: "item"%>
+  <a class="item">
+    Enrollments
+  </a>
+  <div class="ui dropdown item">
+      Account <i class="dropdown icon"></i>
+      <div class="menu">
+       	<% if logged_in?%> 
+       		<%= link_to "Log out", logout_path, method: :delete, class: "item "%>
+       		<%= link_to "My courses", student_path(@current_student),  class: "item "%>
+       	<% else %>
+       		<%= link_to "Log in", login_path, class: "item "%>
+       	<% end %>       
+        <a class="item ">Sign up</a>
+      </div>
+    </div>
+  <div class="right menu ">
+  <p class="item">
+    <h3 style="color:#fff">Tech University</h3>
+  </p>
+  </div>
+</div>

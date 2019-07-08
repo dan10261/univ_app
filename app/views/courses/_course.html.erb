@@ -1,0 +1,26 @@
+
+<div class="four wide column">
+<div class="ui cards">
+	<div class="card">
+	    <div class="content">
+	      <div class="header">
+	        <%= course.name%>
+	      </div>
+	      <!---<div class="meta">
+	        <%= course.name%>
+	      </div>--->
+	      <div class="description">
+	         <%= course.description%>
+	      </div>
+	    </div>
+	    <div class="extra content">
+	      <div class="ui two buttons">
+	        <div class="ui basic green button">
+	        	
+	        <%= link_to "Enroll", enroll_path(:course_id => course.id), method: :post%></div>
+	        <div class="ui basic red button"><%= link_to "Info", course_path(course)%></div>
+	      </div>
+	    </div>
+	  </div>
+</div>
+</div>
