@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :update]
+  before_action :set_course, only: [:show, :update,:destroy,:edit]
   before_action :require_student
   def home
   end
@@ -24,8 +24,18 @@ class CoursesController < ApplicationController
   def show
   end
   
+  def edit
+    
+  end
   def update
     @course.update(course_params)
+    redirect_to courses_path
+  end
+  
+  def destroy
+    @course.destroy
+    flash[:success] ="The course #{@course.name} is deleted."
+    redirect_to courses_path
   end
   
   private 

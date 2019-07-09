@@ -1,0 +1,27 @@
+<div class="four wide column">
+	<div class="ui cards">
+	  <div class="card">
+	    <div class="content">
+	      <div class="header">
+	        <%= student.firstname %>
+	        <%= student.lastname %>
+ 	      </div>
+ 	      <div class="meta">
+	        <%= student.username %>
+ 	      </div>
+	      <div class="description">
+	        <%= student.email %>
+	      </div>
+	    </div>
+	    <div class="extra content">
+	      <div class="ui three buttons">
+	        <%= link_to "Edit", edit_student_path(student), class: "ui primary button"%>
+	        <% if !(@current_student== student && session[:admin] && session[:admin]=='Y')%>
+	        	<%= link_to "Info", student_path(student), class: "ui green button"%>
+	        	<%= link_to "Remove", student_path(student), method: :delete, class: "ui red button", data: {confirm: "Are you sure to remove this student account?"}%>       
+	      	<% end %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>

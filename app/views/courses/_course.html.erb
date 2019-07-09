@@ -1,24 +1,41 @@
-
 <div class="four wide column">
 <div class="ui cards">
 	<div class="card">
 	    <div class="content">
 	      <div class="header">
 	        <%= course.name%>
+	        <% if controller.controller_name=="courses" && controller.action_name=="index" && session[:admin] && session[:admin].downcase=="y" %>
+	        	<%= link_to '<i class=" trash icon right floated"></i>'.html_safe, course_path(course), method: :delete, data: {confirm: "Are you sure to remove this course?"}%>
+	        	<%= link_to '<i class=" edit icon right floated"></i>'.html_safe, edit_course_path(course)%>
+	        <% end %>
 	      </div>
 	      <!---<div class="meta">
 	        <%= course.name%>
 	      </div>--->
 	      <div class="description">
 	         <%= course.description%>
+	         <p><%= pluralize(course.students.count,'student')%> enrolled</p>
 	      </div>
 	    </div>
 	    <div class="extra content">
 	      <div class="ui two buttons">
-	        <div class="ui basic green button">
-	        	
-	        <%= link_to "Enroll", enroll_path(:course_id => course.id), method: :post%></div>
-	        <div class="ui basic red button"><%= link_to "Info", course_path(course)%></div>
+	        <% if @current_student.courses.exists?(course.id) %>	
+	        	<% if controller.controller_name=="courses" && controller.action_name=="index" %>
+			        <div class="ui grey button">        	
+			        	<%= "Already Enrolled" %>
+			        </div>
+		         <% end %>
+		         <% if controller.controller_name=="students" && controller.action_name=="show" %>
+			        <div class="ui red button">        	
+			        	<%=link_to "UnEnroll", unenroll_path(:course_id=>course.id), method: :delete, data: {confirm: "Are you sure to unenroll this course?"}  %>
+			        </div>
+		         <% end %>
+	        <% else %>
+	        	 <div class="ui green button">  
+	        		<%= link_to( "Enroll", enroll_path(:course_id => course.id), method: :post) %>
+	        	</div>
+	        <% end %>
+	        <div class="ui olive button"><%= link_to "Info", course_path(course)%></div>
 	      </div>
 	    </div>
 	  </div>

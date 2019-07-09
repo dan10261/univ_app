@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
   post 'enroll', to: "rolls#create"
+  delete 'unenroll', to: "rolls#destroy"
 end

@@ -8,8 +8,12 @@ class SessionsController < ApplicationController
       if student
         flash[:success] = "you are successfully log in."
         session[:student_id] = student.id
+         if student.username.downcase == 'admin'
+           session[:admin] = 'Y'
+         end
         redirect_to courses_path
       else
+        session[:admin] = nil
         flash[:error] = "login failed."
         redirect_to login_path
       end
@@ -17,6 +21,7 @@ class SessionsController < ApplicationController
   
   def destroy
     session[:student_id] = nil
+    session[:admin] = nil
     flash[:success] = "you are successfully log out."
     redirect_to login_path
   end
@@ -24,7 +29,7 @@ class SessionsController < ApplicationController
   private
   def logged_in_already
     if logged_in?
-      flash[:success] ="You are already login"
+      flash[:success] ="You are already login."
       redirect_to courses_path
     end
   end

@@ -1,0 +1,40 @@
+<%= form_for(@student, html: {class: "ui form "}) do |f|%>
+  <div class="four fields">
+    <div class="field"></div>
+    <div class="field">
+      <label>First name</label>
+      <%= f.text_field :firstname, placeholder: "First Name"%>
+    </div>
+    
+    <div class="field">
+      <label>Last name</label>      	
+      <%= f.text_field :lastname, placeholder: "Last Name"%>
+    </div>
+    <div class="field"></div>
+  </div>
+  <div class="four fields">  
+    <div class="field"></div>
+  	<div class="field">
+      <label>User name</label>
+      <%= f.text_field :username, placeholder: "User Name"%>
+    </div>
+    
+    <div class="field">
+      <label>Email</label>
+      <%= f.text_field :email, placeholder: "Email"%>
+    </div>    
+    <div class="field"></div>
+    
+  </div>
+  <div class="four fields">
+    <div class="field"></div>
+	  <div class="six wide field">
+	  </div>
+    <div class="four wide field">
+    	<div><%= f.button(@student.new_record?? "Sign up" : "Update", class: "ui fluid large  submit button red") %></div>
+    </div>
+    <div class="six wide field">
+	  </div>
+    <div class="field"></div>
+  </div>
+<% end %>

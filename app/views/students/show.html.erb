@@ -1,6 +1,17 @@
 <div class="ui grid">
-<div class="sixteen wide column"><h2><center>My Course Listing</center></2></div>
-<% @my_courses.each do |course|%>
-	<%= render 'courses/course', course: course%>
-<% end %>
+	<div class="six wide column">
+	</div>
+	<div class="four wide column">
+		<center><%= render "/students/student", student: @student%></center>
+	</div>
+	<div class="sixteen wide column">
+		<h2>	
+			<center>
+				Course Listing for <%= @student.firstname%> <%= @student.lastname%>
+			</center>
+		</2>	
+	</div>
+	<% @my_courses.each do |course|%>
+		<%= render 'courses/course', course: course%>
+	<% end %>
 </div>
